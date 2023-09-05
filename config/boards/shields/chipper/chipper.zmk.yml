@@ -1,0 +1,14 @@
+file_format: "1"
+id: chipper
+name: Chipper
+type: shield
+url: https://github.com/JonMuller/gerbers/tree/main/corne-choc-xiao
+requires: [seeeduino_xiao_ble]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+siblings:
+  - chipper_left
+  - chipper_right
+  
