@@ -11,9 +11,10 @@
 
 #define COMBO_TIMEOUT 60
 
-#define DEFAULT 0
-#define LOWER   1
-#define RAISE   2
+#define DEFAULT     0
+#define LOWER       1
+#define RAISE       2
+#define BLUETOOTH   3
 
 
 &caps_word {
@@ -23,41 +24,29 @@
 &kscan0 {
         debounce-press-ms = <20>;
         debounce-release-ms = <20>;
-        };
+};
 
-/ {
-        behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <170>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+/ { conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1,2>;
+            then-layer = <3>;
         };
-        sm: shift_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "SHIFT_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <170>;
-            quick_tap_ms = <0>;
-            flavor = "hold-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-     };
-   };
+};
+
 
 / {
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
+// ------------------------------------------------------------------
 // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | 
 // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
 // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | 
-//             | GUI | LWR | ENT |   | SPC | RSE  | ALT |
+// | ALT/ESC | LWR/TAB | CTL/ENT |   |   SPC   | RSE/BSPC |   GUI   |
+// ------------------------------------------------------------------
+
                     bindings = <
     &kp Q       &kp W &kp E &kp R &kp T                &kp Y &kp U  &kp I        &kp O   &kp P
     &kp A       &kp S &kp D &kp F &kp G                &kp H &kp J  &kp K        &kp L   &kp SQT
@@ -71,21 +60,33 @@
                     bindings = <
     &kp N1    &kp N2   &kp N3    &kp N4    &kp N5     &kp N6    &kp N7    &kp N8   &kp N9    &kp N0
     &kp GRAVE &kp HOME &kp PG_UP &kp PG_DN &kp END    &kp LEFT  &kp DOWN  &kp UP   &kp RIGHT &kp SEMI
-    &kp LSHFT &NUHS    &none     &none     &none      &kp MINUS &kp EQUAL &kp LBKT &kp RBKT  &mt RSHFT NUBS 
-        &mt LALT ESC &kp TAB &mt LCTRL RET          &kp SPACE &kp BSPC &kp RGUI 
+    &mt LSHFT &NUHS    &none     &none     &none      &kp MINUS &kp EQUAL &kp LBKT &kp RBKT  &mt RSHFT NUBS 
+                       &trans    &trans    &trans     &trans    &trans    &trans
+
                         >;
                 label = "Symbols";
                 };
 
                 raise_layer {
 
-                        bindings = <
-    &kp F1  &kp F2  &kp F3    &kp F4    &kp F5     &kp F6    &kp F7    &kp F8   &kp F9    &kp F0
-    &kp F11 &kp F12 &kp LEFT  &kp DOWN  &kp UP   &kp RIGHT &kp SEMI
-    &kp LSHFT                                         &kp MINUS &kp EQUAL &kp LBKT &kp RBKT  &mt RSHFT NUBS 
-        &mt LALT ESC &lt LOWER TAB &mt LCTRL RET       &kp SPACE &lt RAISE BSPC &kp RGUI 
+                    bindings = <
+    &kp F1     &kp F2   &kp F3    &kp F4    &kp F5     &kp F6    &kp F7    &kp F8   &kp F9    &kp F10
+    &kp F11    &kp F12  &none     &none     &none      &none     &none     &none    &none     &none
+    &caps_word &none    &none     &none     &none      &none     &none     &none    &none     &caps_word 
+                        &trans    &trans    &trans     &trans    &trans    &trans
                         >;
                 label = "Function";
                 };
+
+                bluetooth_layer {
+                    bindings = <
+    &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5     &none       &none     &none    &none       &out OUT_TOG
+    &none        &none        &none        &none        &none            &bt BT_PRV  &none     &none    &bt BT_NXT  &bt BT_CLR
+    &none        &none        &none        &none        &none            &none       &none     &none    &none       &none 
+                              &trans       &trans       &trans           &trans      &trans    &trans
+                    >;
+                label = "Bluetooth";
+                };
+                
         };
 };
