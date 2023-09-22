@@ -44,6 +44,13 @@
             #binding-cells = <0>;
             bindings = <&kp Q>, <&kp TAB>;
             mods = <(MOD_LALT|MOD_RALT)>;
+            keep-mods: <(MOD_LALT|MOD_RALT)>;
+        };
+        sft_del: shift_delete {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SHFT_DEL";
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <(MOD_RSFT|MOD_LSFT)>;
         };
     };
 }; 
@@ -66,7 +73,7 @@
     &qtab       &kp W &kp E &kp R &kp T                &kp Y &kp U  &kp I        &kp O   &kp P
     &kp A       &kp S &kp D &kp F &kp G                &kp H &kp J  &kp K        &kp L   &kp SEMI
     &mt LSHFT Z &kp X &kp C &kp V &kp B                &kp N &kp M  &kp COMMA    &kp DOT &mt RSHFT FSLH
-    &mt LALT ESC &lt LOWER TAB &mt LCTRL RET           &kp SPACE &lt RAISE BSPC &kp RGUI 
+    &mt LALT ESC &lt LOWER TAB &mt LCTRL RET           &kp SPACE &lt RAISE &sft_del &kp RGUI 
                         >;
                 label = "Base";
                 };
@@ -86,7 +93,7 @@
 
                     bindings = <
     &kp F1     &kp F2   &kp F3    &kp F4    &kp F5     &kp F6    &kp F7    &kp F8   &kp F9    &kp F10
-    &kp F11    &kp F12  &none     &none     &none      &none     &none     &none    &none     &kp BSPC
+    &kp F11    &kp F12  &none     &none     &none      &none     &none     &none    &none     &sft_del
     &caps_word &none    &none     &none     &none      &none     &none     &none    &none     &caps_word 
                         &trans    &trans    &trans     &trans    &trans    &trans
                         >;
