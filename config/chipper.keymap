@@ -55,7 +55,7 @@
             keep-mods = <(MOD_RSFT)>;
         };
         caps_tap: caps_tap {
-            compatible = "zmk,behavior-mod-tap";
+            compatible = "zmk,behavior-hold-tap";
             label = "CAPS_TAP";
             #binding-cells = <2>;
             bindings = <&kp>, <&caps_word>;
