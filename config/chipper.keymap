@@ -96,7 +96,7 @@
                                 &trans    &trans     &trans      &trans    &trans    &trans
 
                         >;
-                label = "Symbols";
+                label = "Lower";
                 };
 
                 raise_layer {
@@ -107,7 +107,7 @@
     &caps_tap LSHFT 0  &none    &none     &kp PG_DN  &kp MINUS  &kp PLUS  &kp END   &none    &none     &caps_tap RSHFT 0
                         &trans    &trans    &trans     &trans    &trans    &trans
                         >;
-                label = "Function";
+                label = "Raise";
                 };
 
                 bluetooth_layer {
@@ -117,7 +117,7 @@
     &none        &none        &none        &none        &none            &none       &none     &none    &none       &none 
                               &trans       &trans       &trans           &trans      &trans    &trans
                     >;
-                label = "Bluetooth";
+                label = "BT";
                 };
                 
         };
