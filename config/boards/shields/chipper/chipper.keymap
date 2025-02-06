@@ -15,7 +15,7 @@
 #define LOWER   1
 #define RAISE   2
 #define DANGER  3
-
+&studio_unlock
 / {
     macros {
 	hello: hello {
