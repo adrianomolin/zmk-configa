@@ -15,7 +15,7 @@
 #define LOWER       1
 #define RAISE       2
 #define BLUETOOTH   3
-&studio_unlock;
+
 &caps_word {
         continue-list = <UNDERSCORE MINUS BACKSPACE DELETE HOME END LEFT RIGHT>;
 };
@@ -23,6 +23,17 @@
 &kscan0 {
         debounce-press-ms = <20>;
         debounce-release-ms = <20>;
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_studio_unlock {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&studio_unlock>;
+        };
+    };
 };
 
 / { 
