@@ -15,7 +15,7 @@
 #define LOWER       1
 #define RAISE       2
 #define BLUETOOTH   3
-&studio_unlock
+&studio_unlock;
 &caps_word {
         continue-list = <UNDERSCORE MINUS BACKSPACE DELETE HOME END LEFT RIGHT>;
 };
